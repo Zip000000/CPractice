@@ -16,7 +16,7 @@ int main()
     char* path;
     name = getenv("LOGNAME");
     path = getenv("PWD");
-    gethostname(hostname,sizeof(hostname));
+    gethostname(hostname,sizeof(hostname));   //<unistd.h>
     printf("\033[;32m%s\033[0m",name);
     printf("\033[;31m@\033[0m");
     printf("\033[;33m%s\033[0m",hostname);
