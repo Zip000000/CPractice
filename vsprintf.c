@@ -41,13 +41,15 @@ unsigned long simple_strtoul(const char *cp,char **endp,unsigned int base)
 
 /* we use this so that we can do without the ctype library */
 #define is_digit(c)	((c) >= '0' && (c) <= '9')
-
+//宏函数is_digit(c)用来判断c是不是0-9的字符
+//skip_atoi用来将传入的 数字字符串 转化为int类型
 static int skip_atoi(const char **s)
 {
 	int i=0;
 
-	while (is_digit(**s))
-		i = i*10 + *((*s)++) - '0';
+	while (is_digit(**s))   //当*s指向的字符是数字字符时进入循环,该函数退出时*s指向当前格式字符串的最后一位数字的后一位
+		i = i*10 + *((*s)++) - '0';//将数字存入i。
+    //“ -'0' ”这里注意：数字字符的ASCII值 减去 字符0的ASCII值 得到的ASCII值就是这个数字字符本身表示的数字。
 	return i;
 }
 
@@ -116,7 +118,9 @@ static char * number(char * str, int num, int base, int size, int precision
 	return str;
 }
 
-int vsprintf(char *buf, const char *fmt, va_list args)
+// %[标志][输出最小宽度][.精度][长度]类型
+
+int vsprintf(char *buf, const char *fmt, va_list args)//buf是待被写入的字符串的指针，fmt是控制格式化输入的部分，最后是参数列表
 {
 	int len;
 	int i;
@@ -131,20 +135,20 @@ int vsprintf(char *buf, const char *fmt, va_list args)
 				   number of chars for from string */
 	int qualifier;		/* 'h', 'l', or 'L' for integer fields */
 
-	for (str=buf ; *fmt ; ++fmt) {
-		if (*fmt != '%') {
-			*str++ = *fmt;
-			continue;
+	for (str=buf ; *fmt ; ++fmt) {  //扫描格式说明符%,？？？跳过了第一个？？？
+		if (*fmt != '%') { //没有遇到格式说明符% 则是普通字符，直接存到buf
+			*str++ = *fmt; //将fmt中%之前的字符按顺序保存到str中  *str++ 等于 *(str++)
+			continue;   //用continue使这段程序循环执行，没有格式说明符就一直往后遍历，学到了。
 		}
 			
 		/* process flags */
 		flags = 0;
-		repeat:
-			++fmt;		/* this also skips first '%' */
+		repeat:     //goto语句的语句标号
+			++fmt;		/* this also skips first '%' */ //fmt后移一个，跳过%
 			switch (*fmt) {
-				case '-': flags |= LEFT; goto repeat;
-				case '+': flags |= PLUS; goto repeat;
-				case ' ': flags |= SPACE; goto repeat;
+				case '-': flags |= LEFT; goto repeat;  //左对齐
+				case '+': flags |= PLUS; goto repeat;  //输出符号（+或-）
+				case ' ': flags |= SPACE; goto repeat; //为负数时，输出符号
 				case '#': flags |= SPECIAL; goto repeat;
 				case '0': flags |= ZEROPAD; goto repeat;
 				}
