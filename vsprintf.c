@@ -148,11 +148,11 @@ int vsprintf(char *buf, const char *fmt, va_list args)//buf是待被写入的字
 		repeat:     //goto语句的语句标号
 			++fmt;		/* this also skips first '%' */ //fmt后移一个，跳过%
 			switch (*fmt) {
-				case '-': flags |= LEFT; goto repeat;  //左对齐
-				case '+': flags |= PLUS; goto repeat;  //输出符号(+或-)(0只能为+) 且 右对齐
-				case ' ': flags |= SPACE; goto repeat; //符号位占位，负数输出负号，正数输出空格
-				case '#': flags |= SPECIAL; goto repeat;//输出十六进制前加上0x，八进制加0
-				case '0': flags |= ZEROPAD; goto repeat;//输出前导0占满位
+				case '-': flags |= LEFT; goto repeat;  //左对齐，缺省情况是右对齐
+				case '+': flags |= PLUS; goto repeat;  //输出符号(+或-)(0只能为+)且右对齐，缺省时忽略正数的符号。仅适用于数值类型。
+				case ' ': flags |= SPACE; goto repeat; //符号位占位，负数输出负号，正数输出空格。若与+同时出现，则空格说明符被忽略。
+				case '#': flags |= SPECIAL; goto repeat;//输出十六进制前加上前缀0x或0X(大小写)，八进制加前缀0。对于 g和G，不删除尾部0以表示精度。对于f F e E g G 总输出小数点。
+				case '0': flags |= ZEROPAD; goto repeat;//输出前导0占位来达到宽度要求，如果0与-均出现，则0被忽略，即左对齐依然用空格填充。
 				}
 		
 		/* get field width */
