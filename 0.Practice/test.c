@@ -7,10 +7,23 @@
 
 #include<stdio.h>
 #include <string.h>
+
 int main() {
-    int i = 0;
-    char c = '8';
-    i = c - '0';
-    printf("%d\n", i);
+    char str[26] = "abcdefghijklmnopqrstuvwxyz";
+    char* ptr;
+    for(ptr = str; *ptr; ptr++) {
+        printf("str = %p\n", str); 
+        printf("ptr = %p\n", ptr); 
+
+        printf("%c\n",*ptr);
+    }
+
+
+
+
+    
     return 0;
 }
+
+
+
