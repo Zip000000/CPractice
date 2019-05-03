@@ -6,7 +6,7 @@
 
 /* vsprintf.c -- Lars Wirzenius & Linus Torvalds. */
 /*
- * Wirzenius wrote this portably, Torvalds fucked it up :-)
+ * Wirzenius wrote this portably, Torvalds fucked it up :-)      hhhhhhhhhhhhhhhhhhhhhh......
  */
 
 #include <stdarg.h>
@@ -14,7 +14,7 @@
 #include <linux/string.h>
 #include <linux/ctype.h>
 
-unsigned long simple_strtoul(const char *cp,char **endp,unsigned int base)
+unsigned long simple_strtoul(const char *cp,char **endp,unsigned int base) //功能：将一个字符串转换成unsigend long型数据。返回：返回转换后数据。
 {
 	unsigned long result = 0,value;
 
