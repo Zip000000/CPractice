@@ -1,18 +1,17 @@
 /*************************************************************************
-	> File Name: test.c
+	> File Name: 239.street.cpp
 	> Author: Zip 
 	> Mail: 307110017@qq.com 
-	> Created Time: 2019年05月01日 星期三 20时40分58秒
+	> Created Time: 2019年06月14日 星期五 21时30分57秒
  ************************************************************************/
 
-#include<stdio.h>
-#include <string.h>
+#include<iostream>
+using namespace std;
+
+
+
 
 int main() {
     
-    int a[10]={1,2,3,4,5,6,7,8 9 1};
-    printf("%d\n", strlen(a));
-
-
     return 0;
 }

@@ -9,7 +9,7 @@
 #include <cmath>
 using namespace std;
 
-#define MAX 800
+#define MAX 729
 char ans[MAX +5][MAX +5];
 
 void output(int n, int i, int j) {
@@ -27,23 +27,34 @@ void output(int n, int i, int j) {
     return ;
 }
 
-int main() {
-    int n;
-    cin >> n;
-    if (n == -1) return 0;
-    output(n, 0, 0);
-    for (int i = 0; i < 3 * n; i++) {
-        for (int j = 0; j < 3 * n; j++) {
-            if( ans[i][j] == 'X') {
-                cout<<"X";
+void print(int n) {
+        output(n, 0, 0);
+        for (int i = 0; i < pow(3, n-1); i++) {
+            for (int j = 0; j < pow(3, n-1); j++) {
+                if( ans[i][j] == 'X') {
+                    cout<<"X";
+                }
+                else {
+                    cout<<" ";
+                }
             }
-            else {
-                cout<<" ";
-            }
+            cout<<endl;
         }
-        cout<<endl;
+        cout <<"-"<<endl;
+
+}
+
+int main() {
+    int n[100];
+    int temp = 0;
+    while(cin >> n[temp]) {
+        if (n[temp] == -1) break;
+        temp++;
     }
-    
+
+    for (int j = 0; j < temp; j++) {
+        print(n[j]);
+    }
     
     return 0;
 }
