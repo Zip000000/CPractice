@@ -48,7 +48,7 @@ void FuncName(a, FuncName(_, FuncName(b, FuncName(_, Test))))()
             add_right(); \
         } else { \
             add_wrong(); \
-            printf("%s ",YELLOW("[    WRONG ]")); \
+            printf("%s ",YELLOW("[  -WRONG  ]")); \
             printf("%s = %s 输出结果：%d 正确结果：%d\n", #a, #b, __temp_a, __temp_b); \
            } }
 
